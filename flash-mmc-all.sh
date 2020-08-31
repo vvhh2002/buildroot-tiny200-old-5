@@ -1,0 +1,1 @@
+board/widora/tiny200/helper/flash-mmc-all.sh
