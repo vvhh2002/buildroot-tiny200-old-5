@@ -221,6 +221,7 @@
 &csi0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&csi0_pins>;
+	single-plane;
 	status = "okay";
 
 	port {
