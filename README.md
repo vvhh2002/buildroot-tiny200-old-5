@@ -1,6 +1,9 @@
 # Buildroot Package for Widora TINY200
 Opensource BSP for Widora TINY200 boards and Allwinner F1C100s / F1C200s
 
+## Driver support
+Check this file to view current driver support progress: [PROGRESS.md](PROGRESS.md)
+
 ## Install
 
 ### Install necessary packages
