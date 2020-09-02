@@ -59,24 +59,6 @@ sudo make install
  - rebuild-uboot.sh: Recompile U-Boot when you direct edit U-Boot sourcecode.
  - rebuild-kernel.sh: Recompile Kernel when you direct edit Kernel sourcecode.
 
-## For F1C100s
-If your board can't boot up kernel. For example, uboot hang at
-```
-Starting kernel ...
-```
-Slow down `CONFIG_DRAM_CLK` in `uboot.defconfig`, for example
-> Change
-> ```
-> CONFIG_DRAM_CLK=240
-> ```
-> To
-> ```
-> CONFIG_DRAM_CLK=156
-> ```
-If you have already compiled U-Boot, the method above mostly won't work. Try **ONE** of method below.
-- Delete `output/build/uboot-2020.07` and recompile.
-- run `make uboot-menuconfig` and change `sunxi dram clock speed` in `ARM architecture` and recompile.
-
 ## Wiki & FAQ
  - For tutorials & FAQs: [Widora WiKi](https://widora.io/f1c_mainline)
  - For general discussion: [WhyCan Forum](https://whycan.cn/)
