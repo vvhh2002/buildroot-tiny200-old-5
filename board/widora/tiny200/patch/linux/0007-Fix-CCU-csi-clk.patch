@@ -1,7 +1,7 @@
 From b1e43cfe90ea796c6002ddf8bcf5f92b0ee925df Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Thu, 13 Aug 2020 16:30:20 +0800
-Subject: [PATCH 7/8] Fix CCU csi-clk
+Subject: [PATCH 7/9] Fix CCU csi-clk
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c | 2 +-

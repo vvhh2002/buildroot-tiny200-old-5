@@ -1,7 +1,7 @@
 From 89abe9c62f7921cd9b25c5f0d0f8eb270e579960 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Thu, 13 Aug 2020 16:31:29 +0800
-Subject: [PATCH 8/8] Add CCU cir-clk
+Subject: [PATCH 8/9] Add CCU cir-clk
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c      | 11 +++++-

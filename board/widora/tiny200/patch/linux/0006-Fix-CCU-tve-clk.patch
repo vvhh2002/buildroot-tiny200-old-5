@@ -1,7 +1,7 @@
 From 6fb3e2308ea82d3910aa21cbd5c81d6c958b2f35 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Sun, 9 Aug 2020 16:52:27 +0800
-Subject: [PATCH 6/8] Fix CCU tve-clk
+Subject: [PATCH 6/9] Fix CCU tve-clk
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c | 2 +-

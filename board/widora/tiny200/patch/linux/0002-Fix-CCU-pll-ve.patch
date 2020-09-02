@@ -1,7 +1,7 @@
 From 3396c4366881b00453f808bd302dea4617efb50d Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Sun, 26 Jul 2020 00:07:21 +0800
-Subject: [PATCH 2/8] Fix CCU pll-ve
+Subject: [PATCH 2/9] Fix CCU pll-ve
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c | 5 ++++-
