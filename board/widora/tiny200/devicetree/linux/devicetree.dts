@@ -35,6 +35,7 @@
 		compatible = "qiaodian,qd43003c0-40", "simple-panel";
 		#address-cells = <1>;
 		#size-cells = <0>;
+		status = "disabled";
 
 		port@0 {
 			reg = <0>;
