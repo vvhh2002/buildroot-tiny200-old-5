@@ -14,7 +14,7 @@
 - Simple Peripheral: GPIO, SPI, UART, IIC, SDIO, PWM
 - DMA Controller
 - Audio Codec: Playback, Mic-IN
-- USB: Peripheral Mode
+- USB: Peripheral Mode, Host Mode
 - DVP Camera: OV2640, OV5640
 - Display Engine: Frontend, Backend, TCON
 ## <span style="color:cyan;">Should working && Not tested</span>
@@ -22,7 +22,7 @@
 - PWM Backlight
 ### Linux Driver:
 - Audio Codec: FM-IN, Line-IN
-- USB: Host Mode, OTG Mode
+- USB: OTG Mode
 - IR Receiver
 - Keypad ADC
 ## <span style="color:yellow;">Work-In-Progress && Partially working</span>
