@@ -1,7 +1,7 @@
 From 00702295dcb785e8aa01f5762c5c49ff50466fce Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Sun, 26 Jul 2020 00:07:42 +0800
-Subject: [PATCH 4/9] Add Audio Codec
+Subject: [PATCH 04/10] Add Audio Codec
 
 ---
  .../devicetree/bindings/sound/sun4i-codec.txt |   5 +

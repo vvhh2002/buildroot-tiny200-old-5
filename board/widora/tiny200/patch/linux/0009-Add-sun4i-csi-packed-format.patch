@@ -1,7 +1,7 @@
 From 2aa473b215402241d916c3a3a140a1c164e57a6d Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Wed, 2 Sep 2020 10:37:59 +0800
-Subject: [PATCH 9/9] Add sun4i-csi packed format
+Subject: [PATCH 09/10] Add sun4i-csi packed format
 
 ---
  .../platform/sunxi/sun4i-csi/sun4i_csi.c      |   6 +

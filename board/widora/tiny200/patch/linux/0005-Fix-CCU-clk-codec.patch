@@ -1,7 +1,7 @@
 From 64769cfe69069af79c6a2b529906cb97a590e367 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Sun, 26 Jul 2020 16:45:47 +0800
-Subject: [PATCH 5/9] Fix CCU clk-codec
+Subject: [PATCH 05/10] Fix CCU clk-codec
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c | 2 +-
