@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: (GPL-2.0+ OR X11)
 
+#include <dt-bindings/interrupt-controller/irq.h>
 #include "sunxi-common-regulators.dtsi"
 #include <dt-bindings/clock/suniv-ccu-f1c100s.h>
 #include <dt-bindings/reset/suniv-ccu-f1c100s.h>
