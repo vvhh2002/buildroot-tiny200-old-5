@@ -1,7 +1,7 @@
-From f659fafcc5f074c35e8272bc5015ef23815fe263 Mon Sep 17 00:00:00 2001
+From 6728e00bdc046a1cba44ee9cb177c8e6beda3002 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
-Date: Fri, 4 Sep 2020 16:17:19 +0800
-Subject: [PATCH 10/10] Add dt support to rfkill-gpio
+Date: Thu, 10 Sep 2020 11:01:20 +0800
+Subject: [PATCH 6/6] Add rfkill-gpio DT support
 
 ---
  net/rfkill/rfkill-gpio.c | 23 +++++++++++++++++++++++
