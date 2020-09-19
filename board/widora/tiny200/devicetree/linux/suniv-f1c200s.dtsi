@@ -546,14 +546,14 @@
 
 		de: display-engine {
 			compatible = "allwinner,suniv-f1c100s-display-engine",
-						"allwinner,sun5i-a13-display-engine";
+						"allwinner,sun4i-a10-display-engine";
 			allwinner,pipelines = <&fe0>;
 			status = "disabled";
 		};
 
 		fe0: display-frontend@1e00000 {
 			compatible = "allwinner,suniv-f1c100s-display-frontend",
-						"allwinner,sun5i-a13-display-frontend";
+						"allwinner,sun4i-a10-display-frontend";
 			reg = <0x01e00000 0x20000>;
 			interrupts = <30>;
 			clocks = <&ccu CLK_BUS_DE_FE>, <&ccu CLK_DE_FE>,
@@ -582,7 +582,7 @@
 
 		be0: display-backend@1e60000 {
 			compatible = "allwinner,suniv-f1c100s-display-backend",
-						"allwinner,sun5i-a13-display-backend";
+						"allwinner,sun4i-a10-display-backend";
 			reg = <0x01e60000 0x10000>;
 			reg-names = "be";
 			interrupts = <31>;
