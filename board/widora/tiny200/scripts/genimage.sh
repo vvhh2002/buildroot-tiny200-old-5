@@ -10,5 +10,5 @@ SELFDIR=`dirname \`realpath ${0}\``
 
 ${SELFDIR}/mknanduboot.sh ${1}/${2} ${1}/u-boot-sunxi-with-nand-spl.bin
 support/scripts/genimage.sh ${1} -c board/widora/tiny200/genimage-sdcard.cfg
-support/scripts/genimage.sh ${1} -c board/widora/tiny200/genimage-flash.cfg
+support/scripts/genimage.sh ${1} -c board/widora/tiny200/genimage-nor.cfg
 support/scripts/genimage.sh ${1} -c board/widora/tiny200/genimage-nand.cfg

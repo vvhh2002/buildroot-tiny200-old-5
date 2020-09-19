@@ -50,14 +50,14 @@
 
 &spi0 {
 	status = "okay";
-	spi-max-frequency = <50000000>;
-	spi-flash {
+
+	spi-nor {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "winbond,w25q128", "jedec,spi-nor";
-		// compatible = "spi-nand";
 		reg = <0>;
 		spi-max-frequency = <50000000>;
+
 		partitions {
 			compatible = "fixed-partitions";
 			#address-cells = <1>;
@@ -65,25 +65,75 @@
 
 			partition@0 {
 				label = "u-boot";
-				reg = <0x000000 0x80000>;
+				reg = <0x000000 0x70000>;
 				read-only;
 			};
 
-			partition@100000 {
+			partition@1 {
 				label = "dtb";
-				reg = <0x80000 0x10000>;
+				reg = <0x70000 0x10000>;
 				read-only;
 			};
 
-			partition@110000 {
+			partition@2 {
+				label = "kernel";
+				reg = <0x80000 0x580000>;
+				read-only;
+			};
+
+			partition@3 {
+				label = "rom";
+				reg = <0x600000 0x500000>;
+				read-only;
+			};
+
+			partition@4 {
+				label = "overlay";
+				reg = <0xb00000 0x500000>;
+			};
+		};
+	};
+
+	spi-nand {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "spi-nand";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+		status = "disabled";
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			partition@0 {
+				label = "u-boot";
+				reg = <0x000000 0x70000>;
+				read-only;
+			};
+
+			partition@1 {
+				label = "dtb";
+				reg = <0x80000 0x8000000>;
+				read-only;
+			};
+
+			partition@2 {
 				label = "kernel";
 				reg = <0x100000 0x700000>;
 				read-only;
 			};
 
-			partition@510000 {
-				label = "rootfs";
-				reg = <0x800000 0x800000>;
+			partition@3 {
+				label = "rom";
+				reg = <0x800000 0x4000000>;
+				read-only;
+			};
+
+			partition@4 {
+				label = "overlay";
+				reg = <0xb00000 0x2000000>;
 			};
 		};
 	};

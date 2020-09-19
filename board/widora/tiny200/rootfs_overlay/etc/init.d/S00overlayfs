@@ -1,0 +1,22 @@
+#!/bin/sh
+
+mount_root() {
+    mount -n -t jffs2 ${OVERLAYFSDEV} -o rw,noatime /overlay
+    mkdir -p /overlay/upper /overlay/work
+    mount -n -t overlay overlayfs:/overlay -o rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work /mnt
+    mount -n /proc -o noatime,--move /mnt/proc
+    pivot_root /mnt /mnt/rom
+    mount -n /rom/dev -o noatime,--move /dev
+    mount -n /rom/tmp -o noatime,--move /tmp
+    mount -n /rom/sys -o noatime,--move /sys
+}
+
+set -- $(cat /proc/cmdline)
+for x in "$@"; do
+    case "$x" in
+        overlayfsdev=*)
+        OVERLAYFSDEV="${x#overlayfsdev=}"
+        mount_root
+        ;;
+    esac
+done
