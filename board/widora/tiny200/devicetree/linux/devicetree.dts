@@ -83,13 +83,13 @@
 
 			partition@3 {
 				label = "rom";
-				reg = <0x600000 0x500000>;
+				reg = <0x600000 0x600000>;
 				read-only;
 			};
 
 			partition@4 {
 				label = "overlay";
-				reg = <0xb00000 0x500000>;
+				reg = <0xc00000 0x400000>;
 			};
 		};
 	};
@@ -223,7 +223,18 @@
 	pinctrl-0 = <&i2c0_pd_pins>;
 	status = "okay";
 
-	touchscreen@5d {
+	rtp@48 {
+		compatible = "ti,tsc2007";
+		reg = <0x48>;
+		interrupt-parent = <&pio>;
+		interrupts = <4 12 IRQ_TYPE_EDGE_FALLING>;
+		gpios = <&pio 4 12 GPIO_ACTIVE_LOW>;
+		pendown-gpio = <&pio 4 12 GPIO_ACTIVE_LOW>;
+		ti,x-plate-ohms = <660>;
+		wakeup-source;
+	};
+
+	ctp@5d {
 		compatible = "goodix,gt911";
 		reg = <0x5d>;
 		interrupt-parent = <&pio>;
