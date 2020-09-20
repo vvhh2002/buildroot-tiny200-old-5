@@ -1,7 +1,7 @@
 From 660af88b9488b4f4073ad60d2b6a69b415c2ac47 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Thu, 10 Sep 2020 10:59:18 +0800
-Subject: [PATCH 2/6] Fix CCU definition
+Subject: [PATCH 2/7] Fix CCU definition
 
 ---
  drivers/clk/sunxi-ng/ccu-suniv-f1c100s.c      | 24 +++++++-----

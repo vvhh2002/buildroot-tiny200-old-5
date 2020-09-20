@@ -1,7 +1,7 @@
-From f50e64f0ab9abbcf051f3599555c7d73c720233d Mon Sep 17 00:00:00 2001
+From f58b6f6402b83201c18548dc731d2819466e1a41 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
-Date: Sun, 9 Aug 2020 16:59:35 +0800
-Subject: [PATCH] v2020.07.4
+Date: Mon, 21 Sep 2020 00:31:46 +0800
+Subject: [PATCH] v2020.07.5
 
 ---
  arch/arm/cpu/arm926ejs/Makefile               |   1 +
@@ -37,6 +37,7 @@ Subject: [PATCH] v2020.07.4
  drivers/clk/sunxi/clk_suniv.c                 |  80 +++
  drivers/gpio/sunxi_gpio.c                     |   1 +
  drivers/mmc/Kconfig                           |   2 +-
+ drivers/mtd/nand/spi/core.c                   |  15 +-
  drivers/mtd/nand/spi/gigadevice.c             |  67 +++
  drivers/phy/allwinner/phy-sun4i-usb.c         |  12 +-
  drivers/spi/spi-sunxi.c                       |  21 +-
@@ -45,7 +46,7 @@ Subject: [PATCH] v2020.07.4
  include/configs/sunxi-common.h                |  65 ++-
  include/dt-bindings/clock/suniv-ccu.h         |  69 +++
  include/dt-bindings/reset/suniv-ccu.h         |  38 ++
- 41 files changed, 1590 insertions(+), 80 deletions(-)
+ 42 files changed, 1603 insertions(+), 82 deletions(-)
  create mode 100644 arch/arm/cpu/arm926ejs/sunxi/Makefile
  create mode 100644 arch/arm/cpu/arm926ejs/sunxi/config.mk
  create mode 100644 arch/arm/cpu/arm926ejs/sunxi/fel_utils.S
@@ -2128,6 +2129,53 @@ index 8f56572c39..97ecaff88e 100644
  	default y
  	help
  	  This selects support for the SD/MMC Host Controller on
+diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
+index 93371fdde0..6d66451f5e 100644
+--- a/drivers/mtd/nand/spi/core.c
++++ b/drivers/mtd/nand/spi/core.c
+@@ -663,6 +663,8 @@ static bool spinand_isbad(struct nand_device *nand, const struct nand_pos *pos)
+ 		.mode = MTD_OPS_RAW,
+ 	};
+ 	int ret;
++	struct mtd_oob_region region;
++	int i;
+ 
+ 	memset(spinand->oobbuf, 0, 2);
+ 	ret = spinand_select_target(spinand, pos->target);
+@@ -673,8 +675,12 @@ static bool spinand_isbad(struct nand_device *nand, const struct nand_pos *pos)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (spinand->oobbuf[0] != 0xff || spinand->oobbuf[1] != 0xff)
+-		return true;
++	spinand->eccinfo.ooblayout->rfree(spinand->base.mtd, 0, &region);
++
++	for(i = 0 ; i < req.ooblen && i < region.offset; i++){
++		if (spinand->oobbuf[i] != 0xff)
++			return true;
++	}
+ 
+ 	return false;
+ }
+@@ -709,6 +715,7 @@ static int spinand_markbad(struct nand_device *nand, const struct nand_pos *pos)
+ 		.oobbuf.out = spinand->oobbuf,
+ 	};
+ 	int ret;
++	struct mtd_oob_region region;
+ 
+ 	/* Erase block before marking it bad. */
+ 	ret = spinand_select_target(spinand, pos->target);
+@@ -724,6 +731,10 @@ static int spinand_markbad(struct nand_device *nand, const struct nand_pos *pos)
+ 		return ret;
+ 
+ 	memset(spinand->oobbuf, 0, 2);
++
++	spinand->eccinfo.ooblayout->rfree(spinand->base.mtd, 0, &region);
++	req.ooblen = region.offset < req.ooblen ? region.offset : req.ooblen;
++
+ 	return spinand_write_page(spinand, &req);
+ }
+ 
 diff --git a/drivers/mtd/nand/spi/gigadevice.c b/drivers/mtd/nand/spi/gigadevice.c
 index 0b228dcb5b..5eae6624bf 100644
 --- a/drivers/mtd/nand/spi/gigadevice.c

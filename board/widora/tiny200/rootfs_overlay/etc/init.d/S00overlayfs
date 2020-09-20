@@ -1,22 +1,41 @@
 #!/bin/sh
+#
+# Mounting OverlayFS...
+#
 
-mount_root() {
-    mount -n -t jffs2 ${OVERLAYFSDEV} -o rw,noatime /overlay
-    mkdir -p /overlay/upper /overlay/work
-    mount -n -t overlay overlayfs:/overlay -o rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work /mnt
-    mount -n /proc -o noatime,--move /mnt/proc
-    pivot_root /mnt /mnt/rom
-    mount -n /rom/dev -o noatime,--move /dev
-    mount -n /rom/tmp -o noatime,--move /tmp
-    mount -n /rom/sys -o noatime,--move /sys
+start() {
+    printf "Mounting OverlayFS: "
+    set -- $(cat /proc/cmdline)
+    for x in "$@"; do
+        case "$x" in
+            overlayfsdev=*)
+            OVERLAYFSDEV="${x#overlayfsdev=}"
+            mount -n -t jffs2 ${OVERLAYFSDEV} -o rw,noatime /overlay
+            mkdir -p /overlay/upper /overlay/work
+            mount -n -t overlay overlayfs:/overlay -o rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work /mnt
+            mount -n /proc -o noatime,--move /mnt/proc
+            pivot_root /mnt /mnt/rom
+            mount -n /rom/dev -o noatime,--move /dev
+            mount -n /rom/tmp -o noatime,--move /tmp
+            mount -n /rom/sys -o noatime,--move /sys
+            [ $? = 0 ] && echo "OK" || echo "FAIL"
+            exit 0
+            ;;
+        esac
+    done
+    echo "Skip"
 }
 
-set -- $(cat /proc/cmdline)
-for x in "$@"; do
-    case "$x" in
-        overlayfsdev=*)
-        OVERLAYFSDEV="${x#overlayfsdev=}"
-        mount_root
-        ;;
-    esac
-done
+case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    sync
+    ;;
+  *)
+    echo "Usage: $0 {start}"
+    exit 1
+esac
+
+exit $?

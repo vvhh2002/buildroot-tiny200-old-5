@@ -1,7 +1,7 @@
 From a65b2161e05097eac3f07ac768f7fb4c0ebfed9f Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Thu, 10 Sep 2020 10:56:28 +0800
-Subject: [PATCH 1/6] Add USB Support
+Subject: [PATCH 1/7] Add USB Support
 
 ---
  drivers/phy/allwinner/phy-sun4i-usb.c | 10 ++++++++

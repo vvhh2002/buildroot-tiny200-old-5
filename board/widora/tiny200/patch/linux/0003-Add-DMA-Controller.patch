@@ -1,7 +1,7 @@
 From bca12b4957e4945d88ed9a2d68485680eeddc117 Mon Sep 17 00:00:00 2001
 From: Aodzip <aodzip@gmail.com>
 Date: Thu, 10 Sep 2020 11:00:05 +0800
-Subject: [PATCH 3/6] Add DMA Controller
+Subject: [PATCH 3/7] Add DMA Controller
 
 ---
  drivers/dma/Kconfig     |   4 +-
