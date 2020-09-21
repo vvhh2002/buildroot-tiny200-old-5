@@ -16,8 +16,10 @@ start() {
             mount -n /proc -o noatime,--move /mnt/proc
             pivot_root /mnt /mnt/rom
             mount -n /rom/dev -o noatime,--move /dev
+            mount -n /rom/dev/shm -o noatime,--move /dev/shm
             mount -n /rom/tmp -o noatime,--move /tmp
             mount -n /rom/sys -o noatime,--move /sys
+            mount -n /rom/run -o noatime,--move /run
             [ $? = 0 ] && echo "OK" || echo "FAIL"
             exit 0
             ;;
